@@ -1,4 +1,5 @@
-import ManageShopForm from '@/forms/admin-manage/ManageShopForm'
+import ManageShopForm from "@/components/Admin-manage/ManageShopForm";
+
 
 export default function ManageShopPage() {
     return (
