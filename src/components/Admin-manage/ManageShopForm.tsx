@@ -12,9 +12,12 @@ import { Button } from "@/components/ui/button"
 const formSchema = z.object({
     shopName: z.string().min(2, "Vui lòng nhập thông tin"),
     shopAddress: z.string().min(2, "Vui lòng nhập thông tin"),
-    shopCategory: z.array(z.string()).nonempty({
+    shopCategoryProduct: z.array(z.string()).nonempty({
         message: "Vui lòng chọn danh mục"
     }),
+    // shopCategoryBrand: z.array(z.string()).nonempty({
+    //     message: "Vui lòng chọn danh mục"
+    // }),
     shopProducts: z.array(z.object({
         productImage: z.instanceof(File, {
             message: "Vui lòng chọn hình ảnh"
@@ -39,7 +42,7 @@ export default function ManageShopForm({ onSave }: Props) {
         defaultValues: {
             shopName: "",
             shopAddress: "",
-            shopCategory: [],
+            shopCategoryProduct: [],
             shopProducts: [{ name: '' }]
         }
     })
@@ -54,11 +57,11 @@ export default function ManageShopForm({ onSave }: Props) {
             >
                 <ShopDetails />
                 <Separator />
+                <ShopImage />
+                <Separator />
                 <CategoryProduct />
                 <Separator />
                 <Products />
-                <Separator />
-                <ShopImage />
                 <Separator />
                 <Button type='submit'>Thêm cửa hàng</Button>
             </form>

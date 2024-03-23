@@ -3,8 +3,10 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MobileNavbar = () => {
+    const { isAuthenticated, loginWithRedirect, user, logout } = useAuth0()
     return (
         <Sheet>
             <SheetTrigger>
@@ -14,26 +16,44 @@ const MobileNavbar = () => {
                 <div>
                     <SheetTitle>
                         <div className="mb-2 py-2 border-b border-b-gray-500">
-                            <span>Chào mừng đến với cửa hàng kinh doanh nội thất Prohome!</span>
+                            <span>Chào mừng {user?.name} đến với cửa hàng kinh doanh nội thất Prohome!</span>
                         </div>
                     </SheetTitle>
                     <SheetDescription className="flex">
-                        <Button
-                            className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
+                        <Link
+                            to="/"
+                            className="flex flex-1"
                         >
-                            <Link to="/">
+                            <Button
+                                className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
+                            >
                                 Trang chủ
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     </SheetDescription>
                     <SheetDescription className="flex">
-                        <Button
-                            className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
+                        <Link
+                            to="/shops"
+                            className="flex flex-1"
                         >
-                            <Link to="/shops">
+                            <Button
+                                className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
+                            >
                                 Mua sắm
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
+                    </SheetDescription>
+                    <SheetDescription className="flex">
+                        <Link
+                            to="/manage-shop"
+                            className="flex flex-1"
+                        >
+                            <Button
+                                className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
+                            >
+                                Tạo cửa hàng
+                            </Button>
+                        </Link>
                     </SheetDescription>
                     <SheetDescription className="flex">
                         <Button
@@ -45,7 +65,38 @@ const MobileNavbar = () => {
                 </div>
                 <div>
                     <SheetDescription className="flex">
-                        <Button className="flex-1 font-bold bg-blue-500 my-2">Đăng nhập</Button>
+                        {isAuthenticated ?
+                            <Link
+                                className="flex flex-1"
+                                to="/user-profile"
+                            >
+                                <Button
+                                    className="flex flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:bg-gray-200"
+                                >
+                                    Thông tin cá nhân
+                                </Button>
+                            </Link>
+                            :
+                            <></>
+                        }
+
+                    </SheetDescription>
+                    <SheetDescription className="flex">
+                        {isAuthenticated ?
+                            <Button
+                                className="flex-1 font-bold bg-blue-500 my-2"
+                                onClick={() => logout()}
+                            >
+                                Đăng xuất
+                            </Button>
+                            :
+                            <Button className="flex-1 font-bold bg-blue-500 my-2"
+                                onClick={async () => await loginWithRedirect()}
+                            >
+                                Đăng nhập
+                            </Button>
+                        }
+
                     </SheetDescription>
                 </div>
             </SheetContent>

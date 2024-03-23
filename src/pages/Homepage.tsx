@@ -1,5 +1,6 @@
 import Slider from "@/components/Slider/Slider";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function Homepage() {
     return (
@@ -11,7 +12,15 @@ export default function Homepage() {
                     Cửa hàng kinh doanh nội thất Prohome!
                 </h1>
                 <span className='text-lg'>Đơn giản - Chất lượng - Hiệu quả</span>
-                <Button className="w-auto m-auto font-bold text-white text-lg bg-blue-500 hover:text-white">Mua ngay</Button>
+                <Link to='/shops'>
+
+                    <Button
+                        className="w-auto m-auto font-bold text-white text-lg bg-blue-500 hover:text-white"
+                    >
+                        Mua ngay
+
+                    </Button>
+                </Link>
 
             </div>
         </div>

@@ -9,7 +9,7 @@ export default function ShopImage() {
     return (
         <div className='space-y-2'>
             <div>
-                <h2 className='text-2xl font-bold'>Hình ảnh</h2>
+                <h2 className='text-2xl font-bold'>Hình ảnh cửa hàng</h2>
 
             </div>
             <div className='flex flex-col gap-8 md:w-[50%]'>
@@ -35,7 +35,8 @@ export default function ShopImage() {
                                 </Input>
                             </FormControl>
                             <FormMessage />
-                        </FormItem>}>
+                        </FormItem>
+                    }>
                 </FormField>
             </div>
         </div>

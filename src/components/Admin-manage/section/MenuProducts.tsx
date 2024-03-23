@@ -15,6 +15,17 @@ export default function MenuProducts({ index, removeProductItem }: Props) {
         <div className="shadow-lg border p-4 rounded">
             <ProductImage index={index} />
             <div className="flex flex-col md:flex-row md:items-end gap-4 p-4 mt-4 border rounded-lg">
+                {/* <FormField
+                    control={control}
+                    name={`shopProducts.${index}.name`}
+                    render={({ field }) =>
+                        <FormItem>
+                            <FormLabel className='flex items-center gap-1'>Tên</FormLabel>
+                            <FormControl>
+                                <Input {...field} placeholder="Ban an" className='bg-white'></Input>
+                            </FormControl>
+                        </FormItem>}
+                /> */}
                 <FormField
                     control={control}
                     name={`shopProducts.${index}.name`}

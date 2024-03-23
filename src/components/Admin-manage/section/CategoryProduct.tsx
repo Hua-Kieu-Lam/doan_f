@@ -12,7 +12,7 @@ export default function CategoryProduct() {
             </div>
             <FormField
                 control={control}
-                name="shopCategory"
+                name="shopCategoryProduct"
                 render={({ field }) => (
                     <FormItem>
                         <div className="grid md:grid-cols-5 gap-1">

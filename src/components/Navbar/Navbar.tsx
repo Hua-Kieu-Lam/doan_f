@@ -11,7 +11,7 @@ export default function Navbar() {
                 <Link to="/">
                     <Button
                         variant="ghost"
-                        className='ml-10 mb-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className='ml-5 mb-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
                     >
                         Trang chủ
                     </Button>
@@ -19,7 +19,7 @@ export default function Navbar() {
                 <Link to="/shops">
                     <Button
                         variant="ghost"
-                        className='ml-10 mb-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className='ml-5 mb-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
                     >
                         Mua sắm
                     </Button>
@@ -35,9 +35,9 @@ export default function Navbar() {
                 <Link to="/manage-shop">
                     <Button
                         variant="ghost"
-                        className='ml-10 mb-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className='ml-5 mb-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
                     >
-                        Thêm cửa hàng
+                        Tạo cửa hàng
                     </Button>
                 </Link>
                 {/* <Link to="/user-profile">

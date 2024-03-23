@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 type Props = {
     category: string,
-    field: ControllerRenderProps<FieldValues, 'shopCategory'>
+    field: ControllerRenderProps<FieldValues, 'shopCategoryProduct'>
 }
 export default function CategoryProductCheckbox({ category, field }: Props) {
     return (

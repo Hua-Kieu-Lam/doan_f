@@ -10,11 +10,11 @@ export default function UserNameMenu() {
     const { user, logout } = useAuth0()
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className='flex items-center px-3 font-bold gap-2'>
+            <DropdownMenuTrigger className='flex items-center px-3 font-bold gap-2 text-nowrap'>
                 <CircleUserRound className='text-blue-500'></CircleUserRound>
-                {user?.email}
+                {user?.name}
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className='max-[767px]:hidden'>
                 <DropdownMenuItem>
                     <Link
                         to='/user-profile'
