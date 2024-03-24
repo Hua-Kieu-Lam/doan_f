@@ -9,7 +9,7 @@ export default function Homepage() {
 
             <div className="bg-white rounded-lg shadow-lg p-4 flex flex-col gap-5 text-center border border-black-500">
                 <h1 className="text-2xl font-bold tracking-tight text-blue-500">
-                    Cửa hàng kinh doanh nội thất Prohome!
+                    Cửa hàng kinh doanh nội thất ProHome!
                 </h1>
                 <span className='text-lg'>Đơn giản - Chất lượng - Hiệu quả</span>
                 <Link to='/shops'>

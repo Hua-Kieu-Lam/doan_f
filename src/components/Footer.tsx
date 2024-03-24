@@ -4,7 +4,7 @@ export default function Footer() {
         <div className='bg-black py-10'>
             <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
                 <span className='text-3xl text-white font-bold'>
-                    Prohome.com
+                    ProHome.com
                 </span>
                 <div className='text-white flex text-xs max-[320px]:flex-col'>
                     <div className="flex flex-col mr-8">
