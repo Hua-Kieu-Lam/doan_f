@@ -1,3 +1,4 @@
+import { useCreateUser } from '@/api/UserAPI';
 import { AppState, Auth0Provider, User } from '@auth0/auth0-react';
 
 type Props = {
@@ -5,6 +6,8 @@ type Props = {
 };
 
 export default function Auth0ProviderNavigate({ children }: Props) {
+    const { mutateCreateUser } = useCreateUser()
+
     const domain = import.meta.env.VITE_AUTH0_DOMAIN;
     const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
     const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL;
@@ -13,7 +16,12 @@ export default function Auth0ProviderNavigate({ children }: Props) {
         throw new Error("Auth0 domain, client id, and redirect URI are required");
     }
     const onRedirectCallback = (appState?: AppState, user?: User) => {
-        console.log("User", user);
+        if (user?.sub && user?.email) {
+            mutateCreateUser({
+                auth0Id: user.sub,
+                email: user.email
+            })
+        }
     }
     return (
         <Auth0Provider

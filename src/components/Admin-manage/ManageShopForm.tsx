@@ -8,7 +8,7 @@ import Products from "./section/Products"
 import ShopDetails from "./section/ShopDetails"
 import ShopImage from "./section/ShopImage"
 import { Button } from "@/components/ui/button"
-// import CategoryBrand from "./section/CategoryBrand"
+import CategoryBrand from "./section/CategoryBrand"
 
 const formSchema = z.object({
     shopName: z.string().min(2, "Vui lòng nhập thông tin"),
@@ -44,6 +44,8 @@ export default function ManageShopForm({ onSave }: Props) {
             shopName: "",
             shopAddress: "",
             shopCategoryProduct: [],
+            shopCategoryBrand: [],
+
             shopProducts: [{ name: '' }]
         }
     })
@@ -60,8 +62,8 @@ export default function ManageShopForm({ onSave }: Props) {
                 <Separator />
                 <ShopImage />
                 <Separator />
-                {/* <CategoryBrand />
-                <Separator /> */}
+                <CategoryBrand />
+                <Separator />
                 <CategoryProduct />
                 <Separator />
                 <Products />
