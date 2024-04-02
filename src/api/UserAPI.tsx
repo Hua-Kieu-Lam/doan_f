@@ -1,4 +1,5 @@
 import { useMutation } from "react-query"
+import axios from '../axios'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -8,16 +9,13 @@ type CreateUserRequest = {
 }
 export function useCreateUser() {
     const createUserRequest = async (user: CreateUserRequest) => {
-        const response = await fetch(`${API_BASE_URL}/api/user`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const response = await axios({
+            url: `${API_BASE_URL}/api/user`,
+            method: 'post',
+            data: user
         })
-        if (!response.ok) {
-            throw new Error('Thất bại khi tạo người dùng!')
-        }
+
     }
     const {
         mutateAsync: mutateCreateUser,
