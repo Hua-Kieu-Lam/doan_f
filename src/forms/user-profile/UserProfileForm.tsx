@@ -1,15 +1,4 @@
-// import { Form } from '@/components/ui/form'
-// import React from 'react'
 
-// export default function UserProfileForm() {
-//   return (
-//     <Form>
-//         <form action="" onSubmit={}>
-
-//         </form>
-//     </Form>
-//   )
-// }
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -23,18 +12,20 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Image } from "lucide-react"
 
 const formSchema = z.object({
+    avatar: z.string(),
     email: z.string().optional(),
     username: z.string().min(2).max(500),
-    phonenumber: z.number().min(10).max(10),
+    phonenumber: z.coerce.number(),
     address: z.string().min(2).max(500)
 })
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+type Props = {
+    onSave: (userProfileData: z.infer<typeof formSchema>) => void
 }
-export function UserProfileForm() {
+export function UserProfileForm({ onSave }: Props) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -47,12 +38,26 @@ export function UserProfileForm() {
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(onSubmit)}
+                onSubmit={form.handleSubmit(onSave)}
                 className="mt-10 space-y-4 bg-gray-50 rounded-lg p-10 mx-auto flex-1 md:max-w-2xl"
             >
                 <div className="flex justify-center items-center shadow-md border-b">
                     <h1 className=" text-2xl font-bold p-4">Thông tin tài khoản</h1>
                 </div>
+                <FormField
+                    control={form.control}
+                    name="avatar"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Ảnh đại diện</FormLabel>
+                            <FormControl>
+                                <Image {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
                 <FormField
                     control={form.control}
                     name="email"

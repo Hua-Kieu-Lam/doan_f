@@ -24,14 +24,14 @@ export default function Navbar() {
                         Mua sắm
                     </Button>
                 </Link>
-                {/* <Link to="/">
+                <Link to="/manage-product">
                     <Button
                         variant="ghost"
-                        className='ml-10 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className='ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
                     >
-                        Đơn hàng
+                        Thêm sản phẩm
                     </Button>
-                </Link> */}
+                </Link>
                 <Link to="/manage-shop">
                     <Button
                         variant="ghost"
@@ -40,14 +40,7 @@ export default function Navbar() {
                         Tạo cửa hàng
                     </Button>
                 </Link>
-                {/* <Link to="/user-profile">
-                    <Button
-                        variant="ghost"
-                        className='ml-10 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
-                    >
-                        Thông tin người dùng
-                    </Button>
-                </Link> */}
+
             </div>
 
             <span className="flex space-x-2 items-center">

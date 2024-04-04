@@ -3,30 +3,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Separator } from "@/components/ui/separator"
-import CategoryProduct from "./section/CategoryProduct"
-import Products from "./section/Products"
 import ShopDetails from "./section/ShopDetails"
 import ShopImage from "./section/ShopImage"
 import { Button } from "@/components/ui/button"
-import CategoryBrand from "./section/CategoryBrand"
 
 const formSchema = z.object({
     shopName: z.string().min(2, "Vui lòng nhập thông tin"),
     shopAddress: z.string().min(2, "Vui lòng nhập thông tin"),
-    shopCategoryProduct: z.array(z.string()).nonempty({
-        message: "Vui lòng chọn danh mục"
-    }),
-    shopCategoryBrand: z.array(z.string()).nonempty({
-        message: "Vui lòng chọn danh mục"
-    }),
-    shopProducts: z.array(z.object({
-        productImage: z.instanceof(File, {
-            message: "Vui lòng chọn hình ảnh"
-        }),
-        name: z.string().min(2),
-        price: z.coerce.number().min(10000),
-        description: z.string().min(2)
-    })),
     shopImage: z.instanceof(File, {
         message: "Vui lòng chọn hình ảnh"
     }),
@@ -36,17 +19,12 @@ type Props = {
     onSave: (formData: FormData) => void;
 }
 
-
 export default function ManageShopForm({ onSave }: Props) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             shopName: "",
             shopAddress: "",
-            shopCategoryProduct: [],
-            shopCategoryBrand: [],
-
-            shopProducts: [{ name: '' }]
         }
     })
     const onSubmit = (formDataJson: z.infer<typeof formSchema>) => {
@@ -61,12 +39,6 @@ export default function ManageShopForm({ onSave }: Props) {
                 <ShopDetails />
                 <Separator />
                 <ShopImage />
-                <Separator />
-                <CategoryBrand />
-                <Separator />
-                <CategoryProduct />
-                <Separator />
-                <Products />
                 <Separator />
                 <Button type='submit'>Thêm cửa hàng</Button>
             </form>
