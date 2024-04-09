@@ -11,7 +11,9 @@ export default function Navbar() {
                 <Link to="/">
                     <Button
                         variant="ghost"
-                        className='ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className={`ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500
+                        ${location.pathname === '/' ? 'bg-blue-500 text-white font-bold' : ''
+                            }`}
                     >
                         Trang chủ
                     </Button>
@@ -19,7 +21,9 @@ export default function Navbar() {
                 <Link to="/shops">
                     <Button
                         variant="ghost"
-                        className='ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className={`ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500
+                        ${location.pathname === '/shops' ? 'bg-blue-500 text-white font-bold' : ''
+                            }`}
                     >
                         Mua sắm
                     </Button>
@@ -27,7 +31,9 @@ export default function Navbar() {
                 <Link to="/manage-product">
                     <Button
                         variant="ghost"
-                        className='ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className={`ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500
+                        ${location.pathname === '/manage-product' ? 'bg-blue-500 text-white font-bold' : ''
+                            }`}
                     >
                         Thêm sản phẩm
                     </Button>
@@ -35,7 +41,9 @@ export default function Navbar() {
                 <Link to="/manage-shop">
                     <Button
                         variant="ghost"
-                        className='ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500'
+                        className={`ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500
+                        ${location.pathname === '/manage-shop' ? 'bg-blue-500 text-white font-bold' : ''
+                            }`}
                     >
                         Tạo cửa hàng
                     </Button>

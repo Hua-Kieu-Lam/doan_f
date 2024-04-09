@@ -12,7 +12,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Image } from "lucide-react"
+import { useState } from "react"
 
 const formSchema = z.object({
     avatar: z.string(),
@@ -26,12 +26,14 @@ type Props = {
     onSave: (userProfileData: z.infer<typeof formSchema>) => void
 }
 export function UserProfileForm({ onSave }: Props) {
+    const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
             username: "",
-            address: ""
+            address: "",
+            avatar: ""
         },
     })
 
@@ -51,8 +53,23 @@ export function UserProfileForm({ onSave }: Props) {
                         <FormItem>
                             <FormLabel>Ảnh đại diện</FormLabel>
                             <FormControl>
-                                <Image {...field} />
+                                <Input
+                                    type="file"
+                                    {...field}
+                                    onChange={(event) => {
+                                        const file = event.target.files?.[0] || null;
+                                        setAvatarFile(file);
+                                        // Đặt giá trị của trường avatar bằng cách sử dụng form.setValue
+                                    }}
+                                />
                             </FormControl>
+                            {avatarFile && <img
+                                className="mt-2"
+                                src={URL.createObjectURL(avatarFile)}
+                                alt="Avatar"
+                                width={50}
+                                height={50}
+                            />}
                             <FormMessage />
                         </FormItem>
                     )}

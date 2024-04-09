@@ -1,5 +1,6 @@
-import { useAuth0 } from "@auth0/auth0-react"
 import { useMutation } from "react-query"
+import axios from '../axios'
+import { useAuth0 } from "@auth0/auth0-react"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -9,21 +10,15 @@ type CreateUserRequest = {
 }
 
 export function CreateUser() {
-    const { getAccessTokenSilently } = useAuth0()
 
     const createUserRequest = async (user: CreateUserRequest) => {
-        const accessToken = await getAccessTokenSilently()
-        const response = await fetch(`${API_BASE_URL}/api/user`, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const response = await axios({
+            url: `${API_BASE_URL}/api/user`,
+            method: 'post',
+            data: user
         })
-        if (!response.ok) {
-            throw new Error('Thất bại khi tạo người dùng!')
-        }
+
     }
     const {
         mutateAsync: mutateCreateUser,
@@ -49,20 +44,20 @@ type UpdateUserRequest = {
 
 export function UpdateUser() {
     const { getAccessTokenSilently } = useAuth0()
-    const updateUserRequest = async (formData: UpdateUserRequest) => {
-        const accessToken = await getAccessTokenSilently()
-        const response = await fetch(`${API_BASE_URL}/api/user`, {
-            method: 'PUT',
+    const updateUserRequest = async (user: UpdateUserRequest) => {
+        const token = await getAccessTokenSilently()
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const response = await axios({
+            url: `${API_BASE_URL}/api/user/update`,
+            method: 'put',
+            data: user,
             headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            }
         })
-        if (!response.ok) {
-            throw new Error('Thất bại khi cập nhật người dùng!')
-        }
     }
+
     const {
         mutateAsync: mutateUpdateUser,
         isLoading,

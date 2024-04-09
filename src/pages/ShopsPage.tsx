@@ -1,6 +1,6 @@
 import SearchBar, { formSchema } from "@/components/Search/SearchBar";
 import ShopList from "@/components/ShopList/ShopList";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 export default function ShopsPage() {
@@ -12,15 +12,14 @@ export default function ShopsPage() {
     }
     return (
 
-        <div className='grid grid-cols-1 md:grid-cols-[250px_1fr] gap-5'>
-            <div id="category-list">
-                category list
-            </div>
+        <div className='grid grid-cols-1 gap-5'>
             <SearchBar placeHolder="Nhập thông tin cần tìm" onSubmit={handleSearchSubmit} />
             <div></div>
-            <div id="shops-list" className="flex flex-col gap-5">
-                <ShopList />
-            </div>
+            <Link to='/shop'>
+                <div id="shops-list" className="flex flex-col gap-5">
+                    <ShopList />
+                </div>
+            </Link>
         </div>
     )
 }

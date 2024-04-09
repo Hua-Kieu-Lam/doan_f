@@ -7,6 +7,7 @@ import CategoryProduct from "./section/CategoryProduct"
 import Products from "./section/Products"
 import { Button } from "@/components/ui/button"
 import CategoryBrand from "./section/CategoryBrand"
+import SelectShop from "./section/SelectShop"
 
 const formSchema = z.object({
     shopCategoryProduct: z.array(z.string()).nonempty({
@@ -48,6 +49,8 @@ export default function ManageProductForm({ onSave }: Props) {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8 bg-gray-50 p-10 rounded-lg"
             >
+                <SelectShop />
+                <Separator />
                 <CategoryBrand />
                 <Separator />
                 <CategoryProduct />

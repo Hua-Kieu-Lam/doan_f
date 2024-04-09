@@ -5,7 +5,8 @@ import './global.css'
 import AppRoutes from './AppRoutes'
 import Auth0ProviderNavigate from './auth/Auth0ProviderNavigate'
 import { QueryClient, QueryClientProvider } from 'react-query'
-
+import { Provider } from 'react-redux';
+import { store } from './redux/redux'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,11 +18,13 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Router>
-      <QueryClientProvider client={queryClient}>
-        <Auth0ProviderNavigate>
-          <AppRoutes />
-        </Auth0ProviderNavigate>
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Auth0ProviderNavigate>
+            <AppRoutes />
+          </Auth0ProviderNavigate>
+        </QueryClientProvider>
+      </Provider>
     </Router>
   </React.StrictMode>,
 )

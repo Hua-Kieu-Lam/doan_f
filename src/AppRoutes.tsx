@@ -6,6 +6,8 @@ import UserProfilePage from "./pages/UserProfilePage"
 import ShopsPage from "./pages/ShopsPage"
 import AuthPage from "./pages/AuthPage"
 import ManageProductPage from "./pages/ManageProductPage"
+import ShopPage from "./pages/ShopPage"
+import ProductDetailsPage from "./pages/ProductDetailsPage"
 
 const AppRoutes = () => {
     return (
@@ -17,6 +19,13 @@ const AppRoutes = () => {
             <Route path="/manage-shop" element={<Layout>< ManageShopPage /></Layout>} />
             <Route path="/manage-product" element={<Layout>< ManageProductPage /></Layout>} />
             <Route path="/shops" element={<Layout><ShopsPage /></Layout>} />
+
+            {/* gan id vao duong dan /shop/shopId */}
+            <Route path="/shop" element={<Layout><ShopPage /></Layout>} />
+
+            {/* gan id vao duong dan /product/productId */}
+            <Route path="/product" element={<Layout><ProductDetailsPage /></Layout>} />
+
             <Route path="/shops/:search" element={<Layout><ShopsPage /></Layout>} />
         </Routes>
     )
