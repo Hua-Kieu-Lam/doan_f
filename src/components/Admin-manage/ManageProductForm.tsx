@@ -17,7 +17,12 @@ const formSchema = z.object({
         message: "Vui lòng chọn danh mục"
     }),
     shopProducts: z.array(z.object({
-        productImage: z.instanceof(File, {
+        productImages: z.array(
+            z.instanceof(File, {
+                message: "Vui lòng chọn hình ảnh"
+            })
+        ),
+        productThumb: z.instanceof(File, {
             message: "Vui lòng chọn hình ảnh"
         }),
         name: z.string().min(2),
