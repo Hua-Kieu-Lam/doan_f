@@ -1,7 +1,9 @@
-import { FormField, FormItem } from '@/components/ui/form';
+import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { useFormContext } from 'react-hook-form';
 import { CategoryBrandList } from './CategoryBrandList';
 import CategoryBrandCheckbox from './CategoryBrandCheckbox';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default function CategoryBrand() {
     const { control } = useFormContext();
@@ -15,7 +17,12 @@ export default function CategoryBrand() {
                 name="shopCategoryBrand"
                 render={({ field }) => (
                     <FormItem>
-                        <div className="grid md:grid-cols-5 gap-1">
+                        <FormLabel className='flex items-center gap-1'>Tên</FormLabel>
+                        <FormControl>
+                            <Input placeholder="" className='bg-white'></Input>
+                        </FormControl>
+                        <Button type="button" className="bg-red-500 max-h-fit">Thêm</Button>
+                        <div className="grid md:grid-cols-2 gap-10">
                             {CategoryBrandList.map(categoryBrand => (
                                 <CategoryBrandCheckbox categoryBrand={categoryBrand} field={field}></CategoryBrandCheckbox>
                             ))}

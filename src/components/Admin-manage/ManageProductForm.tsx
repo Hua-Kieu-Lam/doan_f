@@ -22,6 +22,8 @@ const formSchema = z.object({
         }),
         name: z.string().min(2),
         price: z.coerce.number().min(10000),
+        quantity: z.coerce.number().min(1),
+        color: z.string().min(2),
         description: z.string().min(2)
     })),
 })

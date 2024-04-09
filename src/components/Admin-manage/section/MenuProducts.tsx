@@ -14,18 +14,7 @@ export default function MenuProducts({ index, removeProductItem }: Props) {
     return (
         <div className="shadow-lg border p-4 rounded">
             <ProductImage index={index} />
-            <div className="flex flex-col md:flex-row md:items-end gap-4 p-4 mt-4 border rounded-lg">
-                {/* <FormField
-                    control={control}
-                    name={`shopProducts.${index}.name`}
-                    render={({ field }) =>
-                        <FormItem>
-                            <FormLabel className='flex items-center gap-1'>Tên</FormLabel>
-                            <FormControl>
-                                <Input {...field} placeholder="Ban an" className='bg-white'></Input>
-                            </FormControl>
-                        </FormItem>}
-                /> */}
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-4 p-4 mt-4 border rounded-lg">
                 <FormField
                     control={control}
                     name={`shopProducts.${index}.name`}
@@ -50,6 +39,28 @@ export default function MenuProducts({ index, removeProductItem }: Props) {
                 />
                 <FormField
                     control={control}
+                    name={`shopProducts.${index}.quantity`}
+                    render={({ field }) =>
+                        <FormItem>
+                            <FormLabel className='flex items-center gap-1'>Số lượng</FormLabel>
+                            <FormControl>
+                                <Input {...field} className='bg-white'></Input>
+                            </FormControl>
+                        </FormItem>}
+                />
+                <FormField
+                    control={control}
+                    name={`shopProducts.${index}.color`}
+                    render={({ field }) =>
+                        <FormItem>
+                            <FormLabel className='flex items-center gap-1'>Màu sắc</FormLabel>
+                            <FormControl>
+                                <Input {...field} className='bg-white'></Input>
+                            </FormControl>
+                        </FormItem>}
+                />
+                <FormField
+                    control={control}
                     name={`shopProducts.${index}.description`}
                     render={({ field }) =>
                         <FormItem>
@@ -59,8 +70,8 @@ export default function MenuProducts({ index, removeProductItem }: Props) {
                             </FormControl>
                         </FormItem>}
                 />
-                <Button type="button" onClick={removeProductItem} className="bg-red-500 max-h-fit">Gỡ bỏ</Button>
             </div>
+            <Button type="button" onClick={removeProductItem} className="bg-red-500 max-h-fit mt-2">Gỡ bỏ</Button>
         </div>
     )
 }

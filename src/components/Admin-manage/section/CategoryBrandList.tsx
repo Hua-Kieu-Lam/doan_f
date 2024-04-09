@@ -1,3 +1,4 @@
 export const CategoryBrandList = [
-    'Sunhouse'
+    'Sunhouse',
+    'INAX'
 ]
