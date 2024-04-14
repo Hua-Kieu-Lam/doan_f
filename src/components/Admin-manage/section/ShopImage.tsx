@@ -1,11 +1,23 @@
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 export default function ShopImage() {
-    const { control, watch } = useFormContext()
-    const existingImageURL = watch("shopImage")
+    const { control } = useFormContext()
+    // const existingImageURL = watch("thumb")
+    const [selectedThumb, setSelectedThumb] = useState('');
+
+    const handleThumbChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files;
+        if (file) {
+            const imageURL = URL.createObjectURL(file[0]);
+            setSelectedThumb(imageURL);
+        } else {
+            setSelectedThumb('');
+        }
+    };
     return (
         <div className='space-y-2'>
             <div>
@@ -13,14 +25,14 @@ export default function ShopImage() {
 
             </div>
             <div className='flex flex-col gap-8 md:w-[50%]'>
-                {existingImageURL && (
+                {selectedThumb && (
                     <AspectRatio ratio={16 / 9}>
-                        <img className="rounded-md object-cover h-full w-full" src={existingImageURL} alt="" />
+                        <img className="rounded-md object-cover h-full w-full" src={selectedThumb} alt="" />
                     </AspectRatio>
                 )}
                 <FormField
                     control={control}
-                    name='shopImage'
+                    name='thumb'
                     render={({ field }) =>
                         <FormItem>
                             <FormControl>
@@ -28,9 +40,12 @@ export default function ShopImage() {
                                     type="file"
                                     className='bg-white'
                                     accept=".png,.jpg,.jpeg"
-                                    onChange={(event) =>
+                                    onChange={(event) => {
                                         field.onChange(
-                                            event.target.files ? event.target.files[0] : null)}
+                                            event.target.files ? event.target.files[0] : null)
+                                        handleThumbChange(event)
+                                    }
+                                    }
                                 >
                                 </Input>
                             </FormControl>

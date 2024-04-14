@@ -2,11 +2,10 @@
 import { ControllerRenderProps, FieldValues } from "react-hook-form";
 import { FormControl, FormItem, FormLabel } from "../../../components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "../../../components/ui/button";
 
 type Props = {
-    categoryProduct: string;
-    field: ControllerRenderProps<FieldValues, "shopCategoryProduct">;
+    categoryProduct: { _id: string; name: string; slug: string; description: string; brand: string[] };
+    field: ControllerRenderProps<FieldValues, "categoryProductList">;
 };
 
 export default function CategoryProductCheckbox({ categoryProduct, field }: Props) {
@@ -16,37 +15,18 @@ export default function CategoryProductCheckbox({ categoryProduct, field }: Prop
                 <FormControl>
                     <Checkbox
                         className="bg-white"
-                        checked={field.value.includes(categoryProduct)}
+                        checked={field.value.includes(categoryProduct._id)}
                         onCheckedChange={(checked) => {
                             const updatedValue = checked
-                                ? [...field.value, categoryProduct]
-                                : field.value.filter((value: string) => value !== categoryProduct);
+                                ? [...field.value, categoryProduct._id]
+                                : field.value.filter((value: string) => value !== categoryProduct._id);
                             field.onChange(updatedValue);
                         }}
                     />
                 </FormControl>
-                <FormLabel className="text-sm font-normal ml-2">{categoryProduct}</FormLabel>
+                <FormLabel className="text-sm font-normal ml-2">{categoryProduct.name}</FormLabel>
             </div>
-            <div>
-                <Button
-                    type="button"
-                    className="ml-2 bg-blue-600"
-                    onClick={() => {
-                        // Handle edit action
-                    }}
-                >
-                    Edit
-                </Button>
-                <Button
-                    type="button"
-                    className="ml-2 bg-red-600"
-                    onClick={() => {
-                        // Handle delete action
-                    }}
-                >
-                    Delete
-                </Button>
-            </div>
+            {/* Additional buttons for edit and delete */}
         </FormItem>
     );
 }
