@@ -24,7 +24,7 @@ export default function ShopDetails() {
             </FormField>
             <FormField
                 control={control}
-                name="shopAddress"
+                name="address"
                 render={({ field }) => (
                     <FormItem>
                         <FormLabel>Địa chỉ</FormLabel>

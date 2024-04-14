@@ -6,7 +6,7 @@ type Props = {
     categoryBrand: string,
     field: ControllerRenderProps<FieldValues, 'shopCategoryBrand'>
 }
-export default function CategoryProductCheckbox({ categoryBrand, field }: Props) {
+export default function CategoryBrandCheckbox({ categoryBrand, field }: Props) {
     return (
         <FormItem className="flex flex-row justify-between items-center space-x-1 space-y-0 mt-2">
             <div>

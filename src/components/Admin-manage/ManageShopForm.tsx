@@ -6,12 +6,16 @@ import { Separator } from "@/components/ui/separator"
 import ShopDetails from "./section/ShopDetails"
 import ShopImage from "./section/ShopImage"
 import { Button } from "@/components/ui/button"
+import CategoryProductShop from "./section/CategoryProductShop"
 
 const formSchema = z.object({
     shopName: z.string().min(2, "Vui lòng nhập thông tin"),
-    shopAddress: z.string().min(2, "Vui lòng nhập thông tin"),
-    shopImage: z.instanceof(File, {
+    address: z.string().min(2, "Vui lòng nhập thông tin"),
+    thumb: z.instanceof(File, {
         message: "Vui lòng chọn hình ảnh"
+    }),
+    categoryProductList: z.array(z.string()).nonempty({
+        message: "Vui lòng chọn danh mục"
     }),
 })
 
@@ -19,17 +23,26 @@ type Props = {
     onSave: (formData: FormData) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function ManageShopForm({ onSave }: Props) {
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             shopName: "",
-            shopAddress: "",
+            address: "",
+            thumb: undefined as File | undefined,
+            categoryProductList: [],
         }
     })
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onSubmit = (formDataJson: z.infer<typeof formSchema>) => {
+        const formData = new FormData()
+
+        formData.append("shopName", formDataJson.shopName)
+        formData.append("address", formDataJson.address)
+        formData.append("thumb", formDataJson.thumb)
+        formData.append("categoryProductList", formDataJson.categoryProductList.join(", "))
+        onSave(formData)
+        form.reset()
     }
     return (
         <Form {...form}>
@@ -41,6 +54,7 @@ export default function ManageShopForm({ onSave }: Props) {
                 <Separator />
                 <ShopImage />
                 <Separator />
+                <CategoryProductShop />
                 <Button type='submit'>Thêm cửa hàng</Button>
             </form>
         </Form>
