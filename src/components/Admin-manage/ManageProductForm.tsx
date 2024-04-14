@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Separator } from "@/components/ui/separator"
 import CategoryProduct from "./section/CategoryProduct"
@@ -8,14 +9,14 @@ import Products from "./section/Products"
 import { Button } from "@/components/ui/button"
 import CategoryBrand from "./section/CategoryBrand"
 import SelectShop from "./section/SelectShop"
+import { createProduct } from '@/api/ProductsAPI'
+import { useForm } from "react-hook-form"
+import MarkdownEditor from "./MarkdownEditor"
+import { useCallback, useState } from "react"
+import DefaultLayout from "@/Admin/src/layout/DefaultLayout"
+
 
 const formSchema = z.object({
-    shopCategoryProduct: z.array(z.string()).nonempty({
-        message: "Vui lòng chọn danh mục"
-    }),
-    shopCategoryBrand: z.array(z.string()).nonempty({
-        message: "Vui lòng chọn danh mục"
-    }),
     shopProducts: z.array(z.object({
         productImages: z.array(
             z.instanceof(File, {
@@ -42,30 +43,120 @@ export default function ManageProductForm({ onSave }: Props) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            shopCategoryProduct: [],
-            shopCategoryBrand: [],
-            shopProducts: [{ name: '' }]
+            shopProducts: [{ name: '', productImages: [] }]
         }
     })
-    const onSubmit = (formDataJson: z.infer<typeof formSchema>) => {
+
+    const [shopSelect, setShopSelect] = useState("");
+    const [shopBrand, setShopBrand] = useState("");
+    const [shopCategoryProduct, setShopCategoryProduct] = useState("");
+
+    const { mutateCreateProduct } = createProduct()
+
+    const [payload, setPayload] = useState({
+        description: "",
+      });
+    const handleChangeValue = useCallback(
+        (e: any) => {
+          setPayload(e);
+        },
+        [payload]
+    );
+    
+    const handleDataSelectShopChild = (data: any) => {
+        setShopSelect(data);
+    };
+
+    const handleDataSelectBrandChild = (data: any) => {
+        setShopBrand(data);
+    };
+
+    const handleDataSelectCateProductChild = (data: any) => {
+        setShopCategoryProduct(data);
+    };
+
+
+    // interface CreateProductRequest  {
+    //     name: string,
+    //     description: string,
+    //     brand: string,
+    //     price: number,
+    //     categoryId: string,
+    //     shopListId: string,
+    //     thumb: File,
+    //     quantity: number,
+    //     color: string,
+    //     images: [],
+    // }
+
+    const onSubmit = async (formDataJson: z.infer<typeof formSchema>) => {
+        const data = {
+            thumb: formDataJson.shopProducts[0].productThumb,
+            image: formDataJson.shopProducts[0].productImages,
+            categoryId: shopCategoryProduct,
+            shopListId: shopSelect,
+            brand: shopBrand,
+            name: formDataJson.shopProducts[0].name,
+            color: formDataJson.shopProducts[0].color,
+            price: formDataJson.shopProducts[0].price,
+            description: formDataJson.shopProducts[0].description,
+            quantity: formDataJson.shopProducts[0].quantity,
+        }
+        const finalPayload: { [key: string]: any } = { ...data };
+        const formData = new FormData();
+
+        if (finalPayload.thumb) {
+            formData.append("thumb", finalPayload.productThumb);
+        }
+        
+        const dataTransfer = new DataTransfer();
+        for (const file of data.image) {
+            dataTransfer.items.add(file);
+        }
+          
+        if (dataTransfer.files) {
+            for (const item of dataTransfer.files) {
+              formData.append("image", item);
+            }
+        }
+
+
+        for (const [key, value] of Object.entries(finalPayload)) {
+            formData.append(key, value);
+        }
+        
+
+        const response = await mutateCreateProduct(formData);
+        console.log(response);
 
     }
+
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 bg-gray-50 p-10 rounded-lg"
-            >
-                <SelectShop />
-                <Separator />
-                <CategoryBrand />
-                <Separator />
-                <CategoryProduct />
-                <Separator />
-                <Products />
-                <Separator />
-                <Button type='submit'>Thêm sản phẩm</Button>
-            </form>
-        </Form>
+        // <DefaultLayout>
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-8 bg-gray-50 p-10 rounded-lg"
+                >
+                    <SelectShop onData={handleDataSelectShopChild}/>
+                    <Separator />
+                    <CategoryBrand onData={ handleDataSelectBrandChild} />
+                    <Separator />
+                    <CategoryProduct onData={ handleDataSelectCateProductChild} />
+                    <Separator />
+                    <Products />
+                    <Separator />
+                    <MarkdownEditor
+                        name={"description"}
+                        handleChangeValue={handleChangeValue}
+                        label={"Description"}
+                        value={undefined}
+                    />
+                    <Separator />
+                    
+                    <Button type='submit' >Thêm sản phẩm</Button>
+                </form>
+                </Form>
+            // </DefaultLayout>
     )
 }

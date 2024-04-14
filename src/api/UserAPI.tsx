@@ -11,12 +11,14 @@ type CreateUserRequest = {
 
 export function CreateUser() {
 
+    const { getAccessTokenSilently } = useAuth0()
     const createUserRequest = async (user: CreateUserRequest) => {
+        const token = await getAccessTokenSilently();
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await axios({
+        return await axios({
             url: `${API_BASE_URL}/api/user`,
             method: 'post',
-            data: user
+            data: {...user,token },
         })
 
     }

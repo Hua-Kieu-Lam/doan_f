@@ -14,6 +14,7 @@ instance.interceptors.request.use(
     if (localStorageData && typeof localStorageData === "string") {
       localStorageData = JSON.parse(localStorageData);
       const access_token = JSON.parse(localStorageData?.token);
+      console.log("token: ", access_token);
       config.headers = {
         Authorization: `Bearer ${access_token}`,
       };

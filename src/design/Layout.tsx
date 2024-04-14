@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer"
+import FooterApp from "@/components/Footer"
 import Header from "@/components/Header"
 
 
@@ -13,7 +13,7 @@ const Layout = ({ children }: Props) => {
             <div className="container mx-auto flex-1 py-6 mt-[100px] max-[768px]:mt-[130px]">
                 {children}
             </div>
-            <Footer />
+            <FooterApp />
         </div>
     )
 }

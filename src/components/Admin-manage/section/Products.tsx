@@ -20,12 +20,12 @@ export default function Products() {
         render={() => (
           <FormItem className='flex flex-col gap-2'>
             {fields.map((_, index) => (
-              <>
-                <MenuProducts
+              <div key={index}>
+                <MenuProducts   
                   index={index}
                   removeProductItem={() => remove(index)}
                 />
-              </>
+              </div>
             ))}
           </FormItem>
         )} />
@@ -33,7 +33,7 @@ export default function Products() {
         type="button"
         onClick={() => append({ name: "", price: "" })}
       >
-        Thêm +
+        Thêm
       </Button>
     </div>
 

@@ -33,20 +33,20 @@ export default function CategoryFilter({ onChange, selectedCategories }: Props) 
             </div>
             <div className='space-y-2 flex flex-col'>
                 {CategoryProductList.map((category) => {
-                    const isSelected = selectedCategories.includes(category)
+                    const isSelected = selectedCategories.includes(category.nameP)
                     return (
-                        <div className='flex'>
-                            <input id={`category_${category}`}
+                        <div className='flex' key={category._id}>
+                            <input id={`category_${category.nameP}`}
                                 type='checkbox'
                                 className='hidden'
-                                value={category}
+                                value={category.nameP}
                                 checked={isSelected}
                                 onChange={handleCategoryChange}
                             >
 
                             </input>
                             <Label
-                                htmlFor={`category_${category}`}
+                                htmlFor={`category_${category.nameP}`}
                                 className={
                                     `flex flex-1 items-center cursor-pointer text-sm rounded-full px-4 py-2 font-semibold 
                                     ${isSelected
@@ -55,7 +55,7 @@ export default function CategoryFilter({ onChange, selectedCategories }: Props) 
                                     }
                                 `}>
                                 {isSelected && <Check size={20} strokeWidth={3} />}
-                                {category}
+                                {category.nameP}
                             </Label>
                         </div>
                     )

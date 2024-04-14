@@ -1,7 +1,6 @@
 import { ControllerRenderProps, FieldValues } from "react-hook-form"
 import { FormControl, FormItem, FormLabel } from "../../../components/ui/form"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
 
 type Props = {
     categoryBrand: string,
@@ -25,7 +24,7 @@ export default function CategoryProductCheckbox({ categoryBrand, field }: Props)
                 </FormControl>
                 <FormLabel className="text-sm font-normal ml-2">{categoryBrand}</FormLabel>
             </div>
-            <div>
+            {/* <div>
                 <Button
                     type="button"
                     className="ml-2 bg-blue-600"
@@ -44,7 +43,7 @@ export default function CategoryProductCheckbox({ categoryBrand, field }: Props)
                 >
                     Delete
                 </Button>
-            </div>
+            </div> */}
         </FormItem>
     );
 }

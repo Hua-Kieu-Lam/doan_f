@@ -19,6 +19,7 @@ type Props = {
     onSave: (formData: FormData) => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function ManageShopForm({ onSave }: Props) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -27,8 +28,8 @@ export default function ManageShopForm({ onSave }: Props) {
             shopAddress: "",
         }
     })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onSubmit = (formDataJson: z.infer<typeof formSchema>) => {
-
     }
     return (
         <Form {...form}>
