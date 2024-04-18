@@ -44,18 +44,6 @@ const MobileNavbar = () => {
                         </Link>
                     </SheetDescription>
                     <SheetDescription className="flex">
-                        <Link
-                            to="/manage-shop"
-                            className="flex flex-1"
-                        >
-                            <Button
-                                className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
-                            >
-                                Tạo cửa hàng
-                            </Button>
-                        </Link>
-                    </SheetDescription>
-                    <SheetDescription className="flex">
                         <Button
                             className="flex-1 font-bold bg-white my-2 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500"
                         >

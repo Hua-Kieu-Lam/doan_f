@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ProductList from '@/components/Products/ProductList'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import Cart from '@/components/Cart/Cart';
+import Cart from '@/components/Cart/CartIcon';
 import CategoryFilter from '@/components/CategoryFilter';
 import { useEffect, useState } from 'react';
 import { getShopListById } from '@/api/ShopsAPI';
@@ -20,7 +20,7 @@ interface Item {
 
 export default function ShopPage() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const {sid} = useParams();
+    const { sid } = useParams();
 
 
     const handleCategoryChange = (categories: string[]) => {

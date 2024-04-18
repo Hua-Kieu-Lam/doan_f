@@ -28,14 +28,14 @@ export default function Navbar() {
                         Mua sắm
                     </Button>
                 </Link>
-                <Link to="/manage-product">
+                <Link to="/orders">
                     <Button
                         variant="ghost"
                         className={`ml-5 border-2 text-black hover:font-bold hover:text-white hover:bg-blue-500
-                        ${location.pathname === '/manage-product' ? 'bg-blue-500 text-white font-bold' : ''
+                        ${location.pathname === '/orders' ? 'bg-blue-500 text-white font-bold' : ''
                             }`}
                     >
-                        Thêm sản phẩm
+                        Đơn hàng
                     </Button>
                 </Link>
                 <Link to="/manage-shop">
