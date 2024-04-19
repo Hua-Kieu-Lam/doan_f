@@ -70,6 +70,30 @@ export function getProductByShopId() {
     }
 }
 
+export function getProductByCategoryId() {
+    
+    const getProductByCategoryIdRequest = async (pid: string) => {
+        return await axios({
+            url: `${API_BASE_URL}/api/product/get-product-category/${pid}`,
+            method: 'get',
+        })
+
+    }
+    const {
+        mutateAsync: mutateGetProductByCategoryId,
+        isLoading,
+        isError,
+        isSuccess
+    } = useMutation(getProductByCategoryIdRequest)
+
+    return {
+        mutateGetProductByCategoryId,
+        isLoading,
+        isError,
+        isSuccess
+    }
+}
+
 export function getProducts() {
     
     const getProductsRequest = async (params: any) => {
@@ -95,3 +119,27 @@ export function getProducts() {
     }
 }
 
+
+export function getProductById() {
+    
+    const getProductByIdRequest = async (pid: string) => {
+        return await axios({
+            url: `${API_BASE_URL}/api/product/${pid}`,
+            method: 'get',
+        })
+
+    }
+    const {
+        mutateAsync: mutateGetProductById,
+        isLoading,
+        isError,
+        isSuccess
+    } = useMutation(getProductByIdRequest)
+
+    return {
+        mutateGetProductById,
+        isLoading,
+        isError,
+        isSuccess
+    }
+}

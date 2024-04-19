@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import appSlice from "./app/appSlice";
 
 const commonConfig = {
   key: "proHome/user",
@@ -24,17 +25,16 @@ const userConfig = {
 
 const rootReducer = combineReducers({
   user: persistReducer(userConfig, userSlice),
+  app: appSlice
   // other reducers...
 });
 
 export type RootState = ReturnType<typeof rootReducer>
 
+
+
 export const store = configureStore({
-  reducer: {
-    // app: appSlice,
-    // products: productSlice,
-    user: persistReducer(userConfig, userSlice),
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

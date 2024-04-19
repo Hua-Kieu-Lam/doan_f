@@ -35,7 +35,7 @@ export default function ManageShopForm({ onSave }: Props) {
         }
     })
     const onSubmit = (formDataJson: z.infer<typeof formSchema>) => {
-        const formData = new FormData()
+        const formData = new FormData();
 
         formData.append("shopName", formDataJson.shopName)
         formData.append("address", formDataJson.address)

@@ -76,19 +76,6 @@ export default function ManageProductForm({ onSave }: Props) {
     };
 
 
-    // interface CreateProductRequest  {
-    //     name: string,
-    //     description: string,
-    //     brand: string,
-    //     price: number,
-    //     categoryId: string,
-    //     shopListId: string,
-    //     thumb: File,
-    //     quantity: number,
-    //     color: string,
-    //     images: [],
-    // }
-
     const onSubmit = async (formDataJson: z.infer<typeof formSchema>) => {
         const data = {
             thumb: formDataJson.shopProducts[0].productThumb,

@@ -41,6 +41,7 @@
     "jsvectormap": "^1.5.3",
     "lucide-react": "^0.356.0",
     "match-sorter": "^6.3.4",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
@@ -51,6 +52,7 @@
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
     "sonner": "^1.4.41",
+    "sweetalert2": "^11.10.7",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
